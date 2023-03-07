@@ -10,13 +10,58 @@ struct magacin
     info_t elem[stackSize];
     int top;
 
-    void Push(int e);
-    info_t Pop();
-    info_t Peek();
-    void Stackoverflow();
-    void Stackunderflow();
-    void Init();
-    bool isEmpty();
+    void Init()
+    {
+
+        top = -1;
+    }
+
+    void Push(int e)
+    {
+
+        if (top >= stacksize - 1)
+            Stackoverflow();
+
+        top++;
+        elem[top] = e;
+    }
+    info_t Pop()
+    {
+
+        if (top < 0)
+            Stackunderflow();
+
+        int temp = top;
+        top--;
+        return elem[temp];
+    }
+    info_t Peek()
+    {
+
+        if (top < 0)
+            Stackunderflow();
+
+        return elem[top];
+    }
+    void Stackoverflow()
+    {
+        cout << "ERROR: Stackoverflow" << endl;
+
+        exit(-1);
+    }
+    void Stackunderflow()
+    {
+
+        cout << "ERROR: Stackunderflow" << endl;
+
+        exit(-1);
+    }
+
+    bool isEmpty()
+    {
+
+        return top < 0;
+    }
 };
 
 void decToBin(int x)
