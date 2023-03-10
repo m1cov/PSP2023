@@ -19,7 +19,7 @@ struct magacin
     void Push(int e)
     {
 
-        if (top >= stacksize - 1)
+        if (top >= stackSize - 1)
             Stackoverflow();
 
         top++;
