@@ -11,11 +11,7 @@ struct stack
     info_t broj[STACKSIZE];
     int top;
 
-    void init()
-    {
-
-        top = -1;
-    }
+    inline void init() { top = -1; }
 
     void push(info_t elem)
     {
@@ -58,17 +54,9 @@ struct stack
         return broj[top + 1];
     }
 
-    bool isEmpty()
-    {
+    inline bool isEmpty() { return top < 0; }
 
-        return top < 0;
-    }
-
-    bool isFull()
-    {
-
-        return top >= STACKSIZE - 1;
-    }
+    inline bool isFull() { return top >= STACKSIZE - 1; }
 };
 
 void func(stack &m)
