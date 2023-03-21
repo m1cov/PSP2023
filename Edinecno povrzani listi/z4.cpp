@@ -175,8 +175,9 @@ void func(SLList &l)
         p->link = prev;
         prev = p;
         p = next;
-
     }
+
+    l.head = prev;
 }
 
 int main()
