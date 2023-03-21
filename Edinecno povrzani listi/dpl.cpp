@@ -4,26 +4,27 @@ using namespace std;
 
 // Dvojno povrzana niza
 
-struct jazol
+struct node
 {
 
     int info;
-    jazol *next, *prev;
+    node *next, *prev;
 };
 
 struct dpl
 {
 
-    jazol *head;
-    jazol *tail;
+    node *head;
+    node *tail;
 
     void init()
     {
         head = tail = NULL;
     }
-    void ins_after(jazol *l_ptr, int x)
+
+    void ins_after(node *l_ptr, int x)
     {
-        jazol *t_ptr = new jazol;
+        node *t_ptr = new node;
 
         t_ptr->info = x;
         t_ptr->prev = l_ptr;
@@ -36,10 +37,11 @@ struct dpl
 
         l_ptr->next = t_ptr;
     };
-    void ins_before(jazol *l_ptr, int x)
+
+    void ins_before(node *l_ptr, int x)
     {
 
-        jazol *t_ptr = new jazol;
+        node *t_ptr = new node;
 
         t_ptr->info = x;
         t_ptr->next = l_ptr;
@@ -52,10 +54,11 @@ struct dpl
 
         l_ptr->prev = t_ptr;
     };
+
     void ins_first(int data)
     {
 
-        jazol *p_ptr = new jazol;
+        node *p_ptr = new node;
 
         p_ptr->info = data;
         p_ptr->prev = NULL;
@@ -68,18 +71,20 @@ struct dpl
 
         head = p_ptr;
     };
+
     void printList()
     {
-        jazol *p;
+        node *p;
 
         for (p = head;;)
         {
         }
     }
-    jazol *nodeOnPosition(int n)
+
+    node *nodeOnPosition(int n)
     {
 
-        jazol *t_ptr = head;
+        node *t_ptr = head;
 
         for (int i = 0; i < n && t_ptr != NULL; i++)
         {
@@ -88,6 +93,7 @@ struct dpl
 
         return t_ptr;
     }
+
     void mkLinkList(int n)
     {
 
@@ -100,6 +106,7 @@ struct dpl
             ins_first(data);
         }
     }
+
     void del_first()
     {
 
@@ -113,13 +120,14 @@ struct dpl
             }
             else
             {
-                jazol *temp = head;
+                node *temp = head;
                 head = head->next;
                 head->prev = NULL;
                 delete temp;
             }
         }
     }
+
     void del_last()
     {
 
@@ -133,7 +141,7 @@ struct dpl
             }
             else
             {
-                jazol *temp = tail;
+                node *temp = tail;
                 tail = tail->prev;
                 tail->next = NULL;
                 delete temp;
@@ -141,10 +149,10 @@ struct dpl
         }
     }
 
-    jazol *findFirst(int x)
+    node *findFirst(int x)
     {
 
-        jazol *l;
+        node *l;
 
         for (l = head; l != NULL && l->info != x; l = l->next)
         {
@@ -152,10 +160,10 @@ struct dpl
         }
     }
 
-    jazol *findLast(int x)
+    node *findLast(int x)
     {
 
-        jazol *l;
+        node *l;
 
         for (l = tail; l != NULL && l->info != x; l = l->prev)
         {
@@ -163,8 +171,59 @@ struct dpl
         }
     }
 
-    
+    void insInOrder(int x)
+    {
 
+        node *p = head;
+
+        if (x <= p->info)
+            ins_first(x);
+        else
+        {
+
+            while (p != NULL && p->info < x)
+            {
+
+                p = p->next;
+            }
+            if (p == NULL)
+                ins_after(tail, x);
+            else
+                ins_before(p, x);
+        }
+    }
+
+    void freeLinkList()
+    {
+
+        while (head != NULL)
+        {
+            del_first();
+        }
+    }
+};
+
+struct DPKL
+{
+    node *head, *tail;
+
+    void printList()
+    {
+
+        node *p;
+
+        for (p = head; p != tail; p = p->next)
+        {
+            printNode(p);
+        }
+
+        printNode(p);
+    }
+
+    void printNode(node *p)
+    {
+        cout << p->info;
+    }
 };
 
 int main()
