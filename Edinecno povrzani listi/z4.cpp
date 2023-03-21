@@ -136,6 +136,49 @@ struct SLList
     }
 };
 
+void func(SLList &l)
+{
+
+    /*
+     So pomosna lista
+
+    SLList pom;
+     pom.init();
+
+     node *p = l.head;
+
+     while (p != NULL)
+     {
+         pom.insFirst(p->info);
+         p = p->link;
+     }
+
+     l.deleteList();
+     p = pom.head;
+
+     while (p != NULL)
+     {
+         l.insLast(p->info);
+         p = p->link;
+     }
+
+     pom.deleteList(); */
+
+    node *p = l.head->link;
+    node *prev = l.head, *next;
+    prev->link = NULL;
+
+    while (p != NULL)
+    {
+
+        next = p->link;
+        p->link = prev;
+        prev = p;
+        p = next;
+
+    }
+}
+
 int main()
 {
 
@@ -166,5 +209,4 @@ int main()
 
     lista.printList();
     lista.deleteList();
-
 }

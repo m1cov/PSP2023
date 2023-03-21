@@ -67,6 +67,19 @@ struct SLList
             insFirst(x);
     }
 
+    node *getLast()
+    {
+
+        node *temp = head;
+
+        while (temp->link != NULL)
+        {
+            temp = temp->link;
+        }
+
+        return temp;
+    }
+
     void delFront()
     {
 
@@ -149,12 +162,14 @@ void func(SLList l1, SLList l2)
 
         if (temp1->info > temp2->info)
         {
-            lista.insLast(temp2->info);
+            if (temp2->info != lista.getLast()->info)
+                lista.insLast(temp2->info);
             temp2 = temp2->link;
         }
         else
         {
-            lista.insLast(temp1->info);
+            if (temp1->info != lista.getLast()->info)
+                lista.insLast(temp1->info);
             temp1 = temp1->link;
         }
     }
@@ -163,10 +178,10 @@ void func(SLList l1, SLList l2)
 
     while (temp != NULL)
     {
-        lista.insLast(temp->info);
+        if (temp->info != lista.getLast()->info)
+            lista.insLast(temp->info);
         temp = temp->link;
     }
-
 
     lista.printList();
 }
