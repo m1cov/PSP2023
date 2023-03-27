@@ -10,7 +10,10 @@ int main()
     queue q;
     sll slinkedlist;
     dll dlinkedlist;
+
     s.init();
+    q.init();
+
 
     for (int i = 0; i < 3; i++)
     {
