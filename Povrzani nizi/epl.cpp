@@ -11,7 +11,7 @@ struct jazol
     jazol *link;
 };
 
-struct Lista
+struct SLL
 {
     jazol *head;
 
@@ -204,7 +204,7 @@ int main()
             lista[i] = pom[i];
         } */
 
-    Lista l1;
+    SLL l1;
 
     l1.kreirajLista(5);
 }
