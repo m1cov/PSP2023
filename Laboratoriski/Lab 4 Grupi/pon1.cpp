@@ -48,32 +48,77 @@ struct queue
         list[++r] = s;
     }
 
-    student dequeue(){
+    student dequeue()
+    {
 
-        if(isEmpty())
+        if (isEmpty())
             queueUnderflow();
 
-
-
+        return list[f++];
     }
 
-    student peek(){
+    student peek()
+    {
 
-        if(isEmpty())
+        if (isEmpty())
             queueUnderflow();
 
         return list[f];
-
     }
-
 };
 
-void sort()
+void sort(queue &s, queue &p, queue &n)
 {
+
+    while (!s.isEmpty())
+    {
+
+        if (s.peek().poeni > 50)
+            p.enqueue(s.dequeue());
+        else
+            n.enqueue(s.dequeue());
+    }
 }
 
 int main()
 {
+
+    queue studenti, polozeni, nepolozeni;
+    student pom;
+    char c;
+    int i = 1;
+
+    studenti.init();
+    polozeni.init();
+    nepolozeni.init();
+
+    while (1)
+    {
+
+        cout << "Vnesete podatoci za studentot " << i << endl;
+        cin >> pom.ime >> pom.indeks >> pom.poeni;
+
+        studenti.enqueue(pom);
+        cout << endl;
+
+        cout << "Vnesete . za kraj na vnesuvanjeto" << endl;
+        cin >> c;
+
+        if (c == '.')
+            break;
+
+        i++;
+    }
+
+    sort(studenti, polozeni, nepolozeni);
+
+    cout << "Polozeni studenti:" << endl;
+    while (!polozeni.isEmpty())
+        polozeni.dequeue().pechati();
+
+    cout << "Nepolozeni studenti:" << endl;
+    while (!nepolozeni.isEmpty())
+        nepolozeni.dequeue().pechati();
 
     return 0;
 }
