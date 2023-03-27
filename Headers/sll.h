@@ -4,21 +4,21 @@ using namespace std;
 
 typedef int info_t;
 
-struct node
+struct SLLnode
 {
 
     info_t info;
-    node *link;
+    SLLnode *link;
 };
 
-struct SLL
+struct sll
 {
-    node *head;
+    SLLnode *head;
 
     void create_list(int nov)
     {
 
-        head = new node;
+        head = new SLLnode;
         head->info = nov;
         head->link = NULL;
     }
@@ -26,7 +26,7 @@ struct SLL
     void insert_first(int prv)
     {
 
-        node *temp = new node;
+        SLLnode *temp = new SLLnode;
         temp->info = prv;
         temp->link = head;
         head = temp;
@@ -35,8 +35,8 @@ struct SLL
     void insert_last(int posl)
     {
 
-        node *dvizenje = head;
-        node *temp = new node;
+        SLLnode *dvizenje = head;
+        SLLnode *temp = new SLLnode;
 
         temp->info = posl;
 
@@ -58,7 +58,7 @@ struct SLL
     void print_list()
     {
 
-        for (node *temp = head; temp != NULL; temp = temp->link)
+        for (SLLnode *temp = head; temp != NULL; temp = temp->link)
         {
 
             cout << temp->info << '\t';
@@ -80,7 +80,7 @@ struct SLL
             else
             {
 
-                node *temp = head, *del;
+                SLLnode *temp = head, *del;
 
                 while (temp->link->link != NULL)
                     temp = temp->link;
@@ -106,7 +106,7 @@ struct SLL
             else
             {
 
-                node *temp = head;
+                SLLnode *temp = head;
                 head = head->link;
                 delete temp;
             }
@@ -126,22 +126,22 @@ struct SLL
         return n;
     }
 
-    void insert(node *p, int data)
+    void insert(SLLnode *p, int data)
     {
 
-        node *temp = new node;
+        SLLnode *temp = new SLLnode;
         temp->info = data;
         temp->link = p->link;
         p->link = temp;
     }
 
-    void delete_after(node *p)
+    void delete_after(SLLnode *p)
     {
 
         if (p->link == NULL)
             return;
 
-        node *tmp = p->link;
+        SLLnode *tmp = p->link;
         p->link = tmp->link;
         delete tmp;
     }

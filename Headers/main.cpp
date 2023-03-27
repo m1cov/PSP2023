@@ -1,9 +1,15 @@
 #include "stack.h"
+#include "dll.h"
+#include "sll.h"
+#include "queue.h"
 
 int main()
 {
 
     stack s;
+    queue q;
+    sll slinkedlist;
+    dll dlinkedlist;
     s.init();
 
     for (int i = 0; i < 3; i++)
@@ -15,7 +21,6 @@ int main()
     {
         cout << s.pop();
     }
-
 
     return 0;
 }

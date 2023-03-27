@@ -32,7 +32,7 @@ struct queue
     void enqueue(info_t s)
     {
 
-        if (isFull)
+        if (isFull())
             queueOverflow();
 
         if (f == -1)

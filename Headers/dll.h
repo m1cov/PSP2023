@@ -2,27 +2,27 @@
 
 using namespace std;
 
-struct node
+struct DLLnode
 {
 
     int info;
-    node *next, *prev;
+    DLLnode *next, *prev;
 };
 
 struct dll
 {
 
-    node *head;
-    node *tail;
+    DLLnode *head;
+    DLLnode *tail;
 
     void init()
     {
         head = tail = NULL;
     }
 
-    void ins_after(node *l_ptr, int x)
+    void ins_after(DLLnode *l_ptr, int x)
     {
-        node *t_ptr = new node;
+        DLLnode *t_ptr = new DLLnode;
 
         t_ptr->info = x;
         t_ptr->prev = l_ptr;
@@ -36,10 +36,10 @@ struct dll
         l_ptr->next = t_ptr;
     };
 
-    void ins_before(node *l_ptr, int x)
+    void ins_before(DLLnode *l_ptr, int x)
     {
 
-        node *t_ptr = new node;
+        DLLnode *t_ptr = new DLLnode;
 
         t_ptr->info = x;
         t_ptr->next = l_ptr;
@@ -56,7 +56,7 @@ struct dll
     void ins_first(int data)
     {
 
-        node *p_ptr = new node;
+        DLLnode *p_ptr = new DLLnode;
 
         p_ptr->info = data;
         p_ptr->prev = NULL;
@@ -72,17 +72,17 @@ struct dll
 
     void printList()
     {
-        node *p;
+        DLLnode *p;
 
         for (p = head;;)
         {
         }
     }
 
-    node *nodeOnPosition(int n)
+    DLLnode *DLLnodeOnPosition(int n)
     {
 
-        node *t_ptr = head;
+        DLLnode *t_ptr = head;
 
         for (int i = 0; i < n && t_ptr != NULL; i++)
         {
@@ -118,7 +118,7 @@ struct dll
             }
             else
             {
-                node *temp = head;
+                DLLnode *temp = head;
                 head = head->next;
                 head->prev = NULL;
                 delete temp;
@@ -139,7 +139,7 @@ struct dll
             }
             else
             {
-                node *temp = tail;
+                DLLnode *temp = tail;
                 tail = tail->prev;
                 tail->next = NULL;
                 delete temp;
@@ -147,10 +147,10 @@ struct dll
         }
     }
 
-    node *findFirst(int x)
+    DLLnode *findFirst(int x)
     {
 
-        node *l;
+        DLLnode *l;
 
         for (l = head; l != NULL && l->info != x; l = l->next)
         {
@@ -158,10 +158,10 @@ struct dll
         }
     }
 
-    node *findLast(int x)
+    DLLnode *findLast(int x)
     {
 
-        node *l;
+        DLLnode *l;
 
         for (l = tail; l != NULL && l->info != x; l = l->prev)
         {
@@ -172,7 +172,7 @@ struct dll
     void insInOrder(int x)
     {
 
-        node *p = head;
+        DLLnode *p = head;
 
         if (x <= p->info)
             ins_first(x);
