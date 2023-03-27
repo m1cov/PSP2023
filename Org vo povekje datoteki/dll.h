@@ -2,8 +2,6 @@
 
 using namespace std;
 
-// Dvojno povrzana niza
-
 struct node
 {
 
