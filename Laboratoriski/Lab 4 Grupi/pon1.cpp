@@ -9,7 +9,10 @@ struct student
     string ime;
     int indeks, poeni;
 
-    inline void pechati() { cout << ime << " " << indeks << " " << poeni; }
+    void pechati()
+    {
+        cout << ime << " " << indeks << " " << poeni << endl;
+    }
 };
 
 struct queue
@@ -39,7 +42,7 @@ struct queue
     void enqueue(student s)
     {
 
-        if (isFull)
+        if (isFull())
             queueOverflow();
 
         if (f == -1)
