@@ -138,16 +138,16 @@ void func(sll &list, int br)
 {
 
     node *pom = list.head;
-    node *temp = new node;
-
-    temp->info = br;
-    temp->link = NULL;
 
     while (pom->link != NULL)
     {
 
         if (pom->info == br)
         {
+
+            node *temp = new node;
+
+            temp->info = br;
 
             temp->link = pom->link;
             pom->link = temp;
