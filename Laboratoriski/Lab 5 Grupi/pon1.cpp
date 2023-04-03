@@ -60,13 +60,101 @@ struct SLList
             pom->link = temp;
         }
     }
+
+    void delete_front()
+    {
+
+        if (head != NULL)
+        {
+
+            if (head->link == NULL)
+                delete head;
+            else
+            {
+
+                node *temp = head;
+
+                head = head->link;
+                delete temp;
+            }
+        }
+    }
+
+    void delete_last()
+    {
+
+        if (head != NULL)
+        {
+
+            if (head->link == NULL)
+                delete head;
+            else
+            {
+
+                node *temp = head;
+
+                while (temp->link->link != NULL)
+                {
+                    temp = temp->link;
+                }
+
+                node *del = temp->link;
+
+                temp->link = NULL;
+                delete del;
+            }
+        }
+    }
+
+    void delete_list()
+    {
+
+        node *temp = head;
+
+        while (temp->link != NULL)
+            delete_last();
+    }
+
+    void print_list()
+    {
+
+        node *temp = head;
+
+        while (temp != NULL)
+        {
+
+            cout << temp->info << '\t';
+            temp = temp->link;
+        }
+    }
 };
 
 void func(SLList &l, int br)
 {
 
-    
+    node *dvizenje = l.head;
+    node *prev = l.head;
 
+    while (dvizenje != NULL)
+    {
+
+        if (dvizenje->info == br)
+        {
+
+            node *p = dvizenje;
+
+            prev->link = dvizenje->link;
+
+            dvizenje = dvizenje->link;
+            delete p;
+        }
+        else
+        {
+
+            prev = dvizenje;
+            dvizenje = dvizenje->link;
+        }
+    }
 }
 
 int main()
@@ -88,6 +176,8 @@ int main()
     cin >> el;
 
     func(lista, el);
+
+    lista.print_list();
 
     return 0;
 }
