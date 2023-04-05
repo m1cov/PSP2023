@@ -1,3 +1,8 @@
+/* Да се имплементира функција која како аргументи добива единечно поврзана листа, а чија
+задача е да ги заротира елементите на парна и непарна позиција (да се смета дека почетниот
+елемент е на позиција 0). При промените да не се креираат и бришат јазли туку постојните јазли
+да се прераспределат. Да се смета дека листата има парен број на елементи.  */
+
 #include <iostream>
 
 using namespace std;
@@ -156,15 +161,41 @@ void func(sll &l)
 
                 pom = pom->link->link; Lesniot nacin */
 
-        node *p = pom;
-        node *t = pom->link;
+        node *prev = l.head;
+        node *pom = l.head->link;
 
-        p->link = t->link;
-        t->link = p;
-        prev->link = t;
+        while (pom != NULL)
+        {
+            prev->link = pom->link;
+            pom->link = prev;
 
-        prev = pom;
-        pom = pom->link->link; // Ne raboti me mrzi da popravam
+            if (prev == l.head)
+            {
+                l.head = pom;
+            }
+            else
+            {
+                node *prevPrev = l.head;
+
+                while (prevPrev->link != prev)
+                {
+                    prevPrev = prevPrev->link;
+                }
+
+                prevPrev->link = pom;
+            }
+
+            prev = prev->link;
+
+            if (prev != NULL)
+            {
+                pom = prev->link;
+            }
+            else
+            {
+                pom = NULL;
+            }
+        }
     }
 }
 
