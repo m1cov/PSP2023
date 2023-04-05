@@ -1,7 +1,14 @@
 /* Да се имплементира функција која како аргументи добива единечно поврзана листа, а чија
 задача е да ги заротира елементите на парна и непарна позиција (да се смета дека почетниот
 елемент е на позиција 0). При промените да не се креираат и бришат јазли туку постојните јазли
-да се прераспределат. Да се смета дека листата има парен број на елементи.  */
+да се прераспределат. Да се смета дека листата има парен број на елементи.
+
+Пример:
+list = |12|->|7|->|5|->|13|->|5|->|9|->NULL
+Решение:
+list = |7|->|12|->|13|->|5|->|9|->|5|->NULL
+
+ */
 
 #include <iostream>
 
@@ -149,54 +156,40 @@ void func(sll &l)
 {
 
     node *pom = l.head;
-    node *prev = l.head;
+    node *t = pom->link;
+
+    pom->link = t->link;
+    t->link = pom;
+
+    l.head = t;
+
+    pom = pom;
 
     while (pom != NULL)
     {
+        cout << pom->info << '\t';
 
-        /*         int i = pom->info;
+        node *p = pom->link;
+        t = pom->link->link;
 
-                pom->info = pom->link->info;
-                pom->link->info = i;
+        pom->link = t;
+        p->link = t->link;
+        t->link = p;
 
-                pom = pom->link->link; Lesniot nacin */
+        if (pom->link->link->link == NULL)
+            break;
 
-        node *prev = l.head;
-        node *pom = l.head->link;
+        pom = p;
 
-        while (pom != NULL)
-        {
-            prev->link = pom->link;
-            pom->link = prev;
+        /*                      int i = pom->info;
 
-            if (prev == l.head)
-            {
-                l.head = pom;
-            }
-            else
-            {
-                node *prevPrev = l.head;
+                            pom->info = pom->link->info;
+                            pom->link->info = i;
 
-                while (prevPrev->link != prev)
-                {
-                    prevPrev = prevPrev->link;
-                }
-
-                prevPrev->link = pom;
-            }
-
-            prev = prev->link;
-
-            if (prev != NULL)
-            {
-                pom = prev->link;
-            }
-            else
-            {
-                pom = NULL;
-            }
-        }
+                            pom = pom->link->link; Lesniot nacin */
     }
+
+    cout << endl;
 }
 
 int main()
