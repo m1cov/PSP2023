@@ -131,9 +131,6 @@ struct KLista
 
 void promeni(KLista &l1, KLista &l2)
 {
-
-    
-
 }
 
 int main()
@@ -154,10 +151,10 @@ int main()
     L2.dodadiPrv(2);
     L2.dodadiPrv(5);
 
-    promeni(L1, L2);
-
     L1.pechati();
     L2.pechati();
+
+    promeni(L1, L2);
 
     L1.brishiLista();
     L2.brishiLista();
