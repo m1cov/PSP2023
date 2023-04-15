@@ -13,11 +13,7 @@ struct CDLL
 {
     node *head, *tail;
 
-    void init()
-    {
-
-        head = tail = NULL;
-    }
+    inline void init() { head = tail = NULL; }
 
     void create_list(int x)
     {
@@ -128,22 +124,39 @@ struct CDLL
 
         node *t = head;
 
-        do
-        {
+        while (t != x)
             t = t->next;
-        } while (t != head || t != x);
 
         if (t == head)
         {
-            cout << "Ne e najden toj jazol" << endl;
+            node *temp = t;
+
+            tail->next = head->next;
+            head->next->prev = tail;
+
+            head = head->next;
+
+            delete temp;
+        }
+        else if (t == tail)
+        {
+
+            node *temp = t;
+            tail = tail->prev;
+            tail->next = head;
+            head->prev = tail;
+
+            delete temp;
         }
         else
         {
 
-            t->prev->next = t->next;
-            t->next->prev = t->prev;
+            node *temp = t;
 
-            delete t;
+            t->next->prev = t->prev;
+            t->prev->next = t->next;
+
+            delete temp;
         }
     }
 
@@ -166,6 +179,49 @@ struct CDLL
 
 void modificiraj(CDLL &l1, CDLL &l2, CDLL &l3)
 {
+
+    node *pom = l1.head;
+
+    do
+    {
+        if (pom->info % 3 == 0)
+        {
+
+            l3.ins_last(pom->info);
+
+            node *t = pom;
+            pom = pom->next;
+
+            t->next->prev = t->prev;
+            t->prev->next = t->next;
+
+            delete t;
+        }
+        else
+            pom = pom->next;
+
+    } while (pom != l1.head);
+
+    pom = l2.head;
+    int n = 0;
+
+    do
+    {
+
+        if (n++ % 2 == 0)
+        {
+
+            l3.ins_last(pom->info);
+
+            node *t = pom;
+            pom = pom->next->next;
+            l2.del_at_pos(t);
+            n++;
+        }
+        else
+            pom = pom->next;
+
+    } while (pom != l2.head);
 }
 
 int main()
