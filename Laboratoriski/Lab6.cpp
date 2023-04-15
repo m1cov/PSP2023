@@ -123,6 +123,30 @@ struct CDLL
             del_last();
     }
 
+    void del_at_pos(node *x)
+    {
+
+        node *t = head;
+
+        do
+        {
+            t = t->next;
+        } while (t != head || t != x);
+
+        if (t == head)
+        {
+            cout << "Ne e najden toj jazol" << endl;
+        }
+        else
+        {
+
+            t->prev->next = t->next;
+            t->next->prev = t->prev;
+
+            delete t;
+        }
+    }
+
     void print()
     {
 
