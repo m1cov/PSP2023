@@ -214,9 +214,15 @@ void modificiraj(CDLL &l1, CDLL &l2, CDLL &l3)
             l3.ins_last(pom->info);
 
             node *t = pom;
-            pom = pom->next->next;
+            pom = pom->next;
+
             l2.del_at_pos(t);
-            n++;
+
+            if (pom == l2.head)
+            {
+                pom = pom->next;
+                n++;
+            }
         }
         else
             pom = pom->next;
