@@ -171,9 +171,8 @@ void konvertiraj(DPLista &l1, DPLista &l2, char c)
 
     pom = l2.head;
 
-    while (pom->next != poz && pom != NULL){
-
-        node *t = pom->next;        
+    while (pom != poz && pom != NULL)
+    {
 
         
 
