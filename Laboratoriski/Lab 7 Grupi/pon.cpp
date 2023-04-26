@@ -7,11 +7,11 @@ class Student
 
 private:
     int id;
-    Kurs kurs;
+    string kurs;
     int cena;
 
 public:
-    Student(int i = 0, Kurs k = Kurs(), int c = 0)
+    Student(int i = 0, string k = "", int c = 0)
     {
 
         id = i >= 0 ? i : 0;
@@ -19,16 +19,6 @@ public:
         cena = c >= 0 ? c : 0;
     }
 
-    void setSifra(int x)
-    {
-
-        id = x >= 0 ? x : 0;
-    }
-    void setKurs(Kurs x)
-    {
-
-        kurs = x;
-    }
     void pechati()
     {
 
@@ -39,12 +29,6 @@ public:
     {
         return cena;
     }
-
-    void setCena(int x)
-    {
-
-        cena = x >= 0 ? x : 0;
-    }
 };
 
 class Kurs
@@ -54,13 +38,15 @@ private:
     int brzapisani;
     Student list[20];
     int participacija;
+    string ime;
 
 public:
-    Kurs(int n = 0, int p = 0, Student *s = NULL)
+    Kurs(int n = 0, int p = 0, Student *s = NULL, string i = "")
     {
 
         brzapisani = n >= 0 && n <= 20 ? n : 0;
         participacija = p >= 0 && p <= 500 ? p : 0;
+        ime = i;
 
         for (int i = 0; i < brzapisani; i++)
             list[i] = s[i];
@@ -69,16 +55,18 @@ public:
     void pechati()
     {
 
-        cout << brzapisani << " " << participacija;
+        cout << ime << " " << brzapisani << " " << participacija;
 
         for (int i = 0; i < brzapisani; i++)
             list[i].pechati();
     }
 
-    float func(int x)
+    void func(int x)
     {
 
-        return participacija - list[x].getCena();
+        participacija -= participacija * brzapisani / 100;
+
+        cout << participacija - list[x].getCena() << endl;
     }
 };
 
@@ -90,20 +78,24 @@ int main()
 
     int n;
 
-    int sifra, cena;
+    int sifra, cena, participacija;
+    string ime;
 
     cin >> n;
+    cin >> ime;
 
     for (int i = 0; i < n; i++)
     {
 
         cin >> sifra >> cena;
-        s[i].setCena(cena);
-        s[i].setKurs(k);
-        s[i].setSifra(sifra);
+        s[i] = Student(sifra, ime, cena);
     }
 
-    
+    k = Kurs(n, participacija, s, ime);
+
+    k.pechati();
+
+    k.func(2);
 
     return 0;
 }
