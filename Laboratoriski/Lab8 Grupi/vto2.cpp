@@ -31,6 +31,8 @@ public:
 
         br = n > 0 ? n : 0;
 
+        list = new string[br];
+
         for (int i = 0; i < br; i++)
             list[i] = l[i];
     }
@@ -39,6 +41,7 @@ public:
     {
 
         br = r.br;
+        list = new string[br];
 
         for (int i = 0; i < br; i++)
             list[i] = r.list[i];
@@ -59,8 +62,11 @@ public:
         for (int i = 0; i < br; i++)
             t[i] = list[i];
 
-        t[++br] = m;
+        br++;
 
+        cout << br;
+
+        t[br] = m;
         delete[] list;
 
         list = new string[br];
@@ -99,14 +105,15 @@ int main()
     string list[] = {"Mnogu", "sakam", "da", "ucam", "PSP", "!"};
     string podrecenia[] = {"za", "copy", "konstruktor"};
     Recenica r;
+
     r = Recenica(list, 6);
 
-    r.pechati();
+    // r.pechati();
 
     for (int i = 0; i < 3; i++)
         r.dodadiElement(podrecenia[i]);
 
-    r.brisiElement(5);
+    // r.brisiElement(5);
 
     r.pechati();
 
