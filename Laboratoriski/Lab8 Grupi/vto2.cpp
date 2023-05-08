@@ -108,7 +108,7 @@ int main()
 
     r = Recenica(list, 6);
 
-    // r.pechati();
+    r.pechati();
 
     for (int i = 0; i < 3; i++)
         r.dodadiElement(podrecenia[i]);
