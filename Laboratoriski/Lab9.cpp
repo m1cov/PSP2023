@@ -49,10 +49,10 @@ public:
     // Vika a necu
     bool &operator>(const Recenica &r)
     {
+
         bool pogolem = true;
 
-        if (zborovi < r.zborovi)
-            pogolem = false;
+        pogolem = zborovi > r.zborovi ? true : false;
 
         return pogolem;
     }
