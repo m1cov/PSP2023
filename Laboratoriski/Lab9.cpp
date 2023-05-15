@@ -34,6 +34,8 @@ public:
         }
 
         cout << endl;
+
+        return o;
     }
 
     Recenica &operator=(const Recenica &r)
@@ -44,6 +46,8 @@ public:
 
         for (int i = 0; i < zborovi; i++)
             list[i] = r.list[i];
+
+        return *this;
     }
 
     // Vika a necu
@@ -73,6 +77,8 @@ public:
             list[i] = t[i];
 
         delete[] t;
+
+        return *this;
     }
 
     Recenica &operator--()
@@ -92,6 +98,8 @@ public:
             list[i] = t[i];
 
         delete[] t;
+
+        return *this;
     }
 
     string operator[](const int poz)
