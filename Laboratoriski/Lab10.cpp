@@ -44,7 +44,7 @@ public:
 
     char *getLok() { return lokacija; }
     int getKvadratura() { return kvadratura; }
-    int getCena() { return cena; }
+    virtual float getCena() { return cena; }
 
     void setLok(char *p = NULL)
     {
@@ -54,7 +54,6 @@ public:
             lokacija[i] = p[i];
         }
     }
-
     void setCena(int c)
     {
         cena = c > 0 ? c : 0;
@@ -65,10 +64,10 @@ public:
         kvadratura = k > 0 ? k : 0;
     }
 
-    void pechati()
+    virtual void pechati()
     {
 
-        for (int i = 0; i < strlen(lokacija) + 1; i++)
+        for (int i = 0; i < strlen(lokacija); i++)
         {
             cout << lokacija[i];
         }
@@ -103,9 +102,11 @@ public:
         setCena(s.getCena());
         setLok(s.getLok());
         setKvadratura(s.getKvadratura());
+
+        return *this;
     }
 
-    float maloprodaznaCena()
+    float getCena()
     {
         return osnovnaCena() - osnovnaCena() * brendovi / 100;
     }
@@ -143,9 +144,11 @@ public:
         setCena(s.getCena());
         setLok(s.getLok());
         setKvadratura(s.getKvadratura());
+
+        return *this;
     }
 
-    int stanbenaCena() { return osnovnaCena() + 5000 * mesta; }
+    float getCena() { return osnovnaCena() + 5000 * mesta; }
 
     void stanbenPechati()
     {
@@ -178,11 +181,10 @@ int main()
 
     StanbenProstor *s = new StanbenProstor[4];
     MaloprodazenProstor *m = new MaloprodazenProstor[4];
-    
+
     Prostor *p = new Prostor[8];
 
-    // Sto kur ste pravele ednas me nemase    
-
+    // Sto kur ste pravele ednas me nemase
 
     return 0;
 }
