@@ -67,6 +67,7 @@ public:
         cout << br;
 
         t[br] = m;
+        br++;
         delete[] list;
 
         list = new string[br];
